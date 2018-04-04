@@ -7,9 +7,8 @@ class Solution:
         result_dict = dict()
         result_list = list()
         for domain in cpdomains:
-            split_res = domain.split()
-            number = int(split_res[0])
-            domain_name = split_res[1]
+            number, domain_name = domain.split()
+            number = int(number)
             # handle the third_class_domain which is the domain_name here
             if domain_name not in result_dict:
                 result_dict[domain_name] = number
@@ -25,7 +24,7 @@ class Solution:
                     result_dict[second_class_domain] += number
             else:
                 super_domain = parent_domain[-1]
-                
+
             if super_domain not in result_dict:
                 result_dict[super_domain] = number
             else:
