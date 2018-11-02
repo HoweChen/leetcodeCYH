@@ -17,19 +17,6 @@ class Solution:
         result = []
         for singleList in A:
             if singleList:
-                # flag = len(singleList) % 2
-                # mid = len(singleList)//2
-                # singleResult = []
-                # if flag == 0:
-                #     # even number of elements in that list
-                #     for index in range(len(singleList)-1, mid-1, -1):
-                #         singleResult.append(
-                #             Solution.revert_num(singleList[index]))
-                # else:
-                #     # odd number of elements in that list
-                #     for index in range(mid, 0, -1):
-                #         singleResult.append(
-                #             Solution.revert_num(singleList[index]))
                 singleResult = list(reversed(singleList))
                 for index in range(len(singleResult)):
                     singleResult[index] = Solution.revert_num(
