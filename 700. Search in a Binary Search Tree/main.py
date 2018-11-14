@@ -7,17 +7,27 @@
 
 
 class Solution(object):
-    def searchBST(self, root, val):
+    def maxDepth(self, root):
         """
         :type root: TreeNode
-        :type val: int
-        :rtype: TreeNode
+        :rtype: int
         """
-        if root == [] or root is None:
-            return []
-        elif root.val == val:
-            return root
-        elif val < root.val:
-            return self.searchBST(root.left, val)
+        if not root:
+            return 0
         else:
-            return self.searchBST(root.right, val)
+            depth = 1
+            depth = self.getDepth(root, depth)
+            return depth+1
+
+    def getDepth(self, root, depth):
+        if root.left is None and root.right is None or not root:
+            depth -= 1
+        elif root.left is None:
+            # goto the right subtree
+            depth += self.getDepth(root.right, depth + 1)
+        elif root.right is None:
+            depth += self.getDepth(root.left, depth + 1)
+        else:
+            depth = self.getDepth(root.left, depth + 1)
+            depth = self.getDepth(root.right, depth + 1)
+        return depth
