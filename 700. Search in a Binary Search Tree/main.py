@@ -15,19 +15,6 @@ class Solution(object):
         if not root:
             return 0
         else:
-            depth = 1
-            depth = self.getDepth(root, depth)
-            return depth+1
-
-    def getDepth(self, root, depth):
-        if root.left is None and root.right is None or not root:
-            depth -= 1
-        elif root.left is None:
-            # goto the right subtree
-            depth += self.getDepth(root.right, depth + 1)
-        elif root.right is None:
-            depth += self.getDepth(root.left, depth + 1)
-        else:
-            depth = self.getDepth(root.left, depth + 1)
-            depth = self.getDepth(root.right, depth + 1)
-        return depth
+            left_depth = self.maxDepth(root.left)
+            right_depth = self.maxDepth(root.right)
+            return max(left_depth, right_depth)+1
