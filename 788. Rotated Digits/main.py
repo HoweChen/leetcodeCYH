@@ -43,7 +43,7 @@ class Solution:
         #                     return False
         #                 else:
         #                     return True
-        # method 2
+        # method 2, linear
         # s1 = set([1, 8, 0])
         # s2 = set([1, 8, 0, 6, 9, 2, 5])
         # def isGood(x):
@@ -51,7 +51,7 @@ class Solution:
         #     return s.issubset(s2) and not s.issubset(s1)
         # return sum(isGood(i) for i in range(N + 1))  # use sum to sum up the true answer
 
-        # method 3
+        # method 3 best answer
         s1 = set([0, 1, 8])
         s2 = set([0, 1, 8, 2, 5, 6, 9])
         s = set()
@@ -63,9 +63,36 @@ class Solution:
                 print(j)
                 if s.issubset(s2) and j in s2:
                     res += 7**(len(N) - i - 1)
+                    # 从0-10之间有7个数字可以被换（包含s1的三个），所以整个数字有那么多种换的方法
                 if s.issubset(s1) and j in s1:
                     res -= 3**(len(N) - i - 1)
+                    # 从0-10之间有3的幂次的被换回原来，所以要减去这些多余的部分
             if v not in s2:
                 return res
             s.add(v)
         return res + (s.issubset(s2) and not s.issubset(s1))
+
+        # method 4, second best
+        # DP
+#         dp = [0]*(N+1)
+#         count = 0
+#         s1 = [0,1,8]
+#         s2 = [2,5,6,9]
+#         count = 0
+#         for i in range(N+1):
+#             if i < 10:
+#                 if i in s1:
+#                     dp[i] = 1
+#                 elif i in s2:
+#                     dp[i] = 2
+#                     count +=1
+#             else:
+#                 a=dp[i//10] # 大的数字可以通过//10 来得到小的数字在dp这张list里的情况
+#                 b=dp[i%10]
+#                 if a ==1 and b ==1:
+#                     dp[i] =1
+#                 elif a>=1 and b>=1:
+#                     dp[i] = 2
+#                     count +=1
+
+#         return count
