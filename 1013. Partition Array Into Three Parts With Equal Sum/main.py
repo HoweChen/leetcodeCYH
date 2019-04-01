@@ -1,5 +1,7 @@
 class Solution:
     def canThreePartsEqualSum(self, A: List[int]) -> bool:
+        # 利用prefix sum这个概念
+        # https://en.wikipedia.org/wiki/Prefix_sum
         # method 1
         #         sum_A = sum(A)
         #         if sum_A %3 != 0: return False
